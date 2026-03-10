@@ -1,10 +1,14 @@
 const Project = require('../models/Project');
 
-// @desc    Get all projects
+// @desc    Get all projects with optional category filtering
 // @route   GET /api/projects
 exports.getProjects = async (req, res) => {
   try {
-    const projects = await Project.find().sort({ createdAt: -1 });
+    // Check if there is a category query in the URL (e.g., ?category=Data Science)
+    const category = req.query.category;
+    const query = category ? { category } : {};
+
+    const projects = await Project.find(query).sort({ createdAt: -1 });
     res.status(200).json(projects);
   } catch (error) {
     res.status(500).json({ message: "Server Error", error: error.message });
