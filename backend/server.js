@@ -9,6 +9,11 @@ connectDB();
 const app = express();
 app.use(cors());
 app.use(express.json());
+// ... existing imports
+const projectRoutes = require('./routes/projectRoutes');
+
+// ... existing middleware
+app.use('/api/projects', projectRoutes);
 
 app.get('/', (req, res) => {
   res.send('API is running...');
