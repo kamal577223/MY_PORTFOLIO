@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { fetchProjects } from './api';
 import Navbar from './components/Navbar';
+import Hero from './components/Hero'; 
 
 function App() {
   const [projects, setProjects] = useState([]);
@@ -27,6 +28,10 @@ function App() {
 
       {/* Main Content Area */}
       <main className="max-w-6xl mx-auto p-8 pt-24">
+        {/* Hero Section comes first */}
+        <Hero />
+
+        {/* Section Header for Projects */}
         <header className="mb-12">
           <h1 className="text-4xl font-extrabold bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent inline-block">
             Featured Projects 🚀
@@ -67,6 +72,7 @@ function App() {
             ))}
           </div>
         )}
+        
       </main>
     </div>
   );
